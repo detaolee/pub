@@ -4,7 +4,7 @@
 	border-radius: $radius;
 }
 
-@mixin boxShadow($params) {
+@mixin box-shadow($params) {
 	$output: $params;
 	
 	@if type-of($output) == string {
@@ -16,7 +16,7 @@
 	box-shadow: $output;
 }
 
-@mixin columnCount($num) {
+@mixin column-count($num) {
 	-moz-column-count: $num;
 	-webkit-column-count: $num;
 	column-count: $num;

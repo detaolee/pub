@@ -66,7 +66,6 @@
 				.title,
 				.tuneIn {
 					margin-right: 2rem;
-					@include ellipsis;
 				}
 			} // li.details
 
@@ -141,7 +140,7 @@
 		opacity: 0;
 		overflow: hidden;
 		z-index: 9998;
-		@include boxShadow('0 0 1.875rem 0 rgba(0, 0, 0, 0.5)');
+		@include box-shadow('0 0 1.875rem 0 rgba(0, 0, 0, 0.5)');
 		@include transition('top 0.3s ease-in-out, opacity 0.3s');
 
 		&.active {
@@ -494,7 +493,7 @@
 						// this does not work in IE9 and below, there is
 						// a JS fallback that does this functionality for
 						// those browser versions
-						@include columnCount(2);
+						@include column-count(2);
 
 						// CSS for non-supported column count browsers
 						&.multiCol {
@@ -555,7 +554,7 @@
 							// this does not work in IE9 and below, there is
 							// a JS fallback that does this functionality for
 							// those browser versions
-							@include columnCount(2);
+							@include column-count(2);
 
 							// CSS for non-supported column count browsers
 							&.multiCol {
@@ -616,7 +615,7 @@
 					// this does not work in IE9 and below, there is
 					// a JS fallback that does this functionality for
 					// those browser versions
-					@include columnCount(3);
+					@include column-count(3);
 
 					// CSS for non-supported column count browsers
 					&.multiCol {
