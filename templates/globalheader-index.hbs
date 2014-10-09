@@ -1,0 +1,154 @@
+{{#with data}}
+	<nav class="globalNav{{#if isShowsNav}} show{{/if}}" data-module="nav">
+		<header>			       
+			<ul>
+				<li class="logo" title="{{siteNameFull}}" itemscope itemtype="http://schema.org/Organization">
+					<a href="[generic:BASESERVER]" itemprop="url">
+						<img src="[generic:CDNROOT]/images/global/[generic:SCHEME]/[generic:BU]_logo.png" alt="{{siteNameFull}}" itemprop="logo" width="" height=""/>
+					</a>
+				</li>
+				<li class="details">
+					<{{heading}} class="title">{{#linkable show.link}}{{show.showname}}{{/linkable}}</{{heading}}>
+					<p class="tuneIn">{{tuneInDay show.tunein}}</p>
+				</li>
+				<li class="links">
+					<ul>
+						{{#each nav}}
+							<li class="shadow">
+								<span class="{{titleClass}}">{{title}}</span>
+							</li>
+						{{/each}}
+						<li class="menu">
+							<a class="dropdownTrigger" href="#"><span class="menu">menu</span></a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</header>
+		<div class="dropdownMenu">
+			<div class="panelContainer">
+				<div class="panel left">
+					{{#if isShowsNav}}
+						<h3 class="title">{{#linkable show.link}}{{show.showname}}{{/linkable}}</h3>
+						<hr />
+						<div class="info">
+							{{#linkable show.link class="thumb"}}
+								{{#if nonResponsive}}
+									<img class="replaceable" src="{{show.mediaThumbnail.url}}" alt="{{show.showname}}" title="{{show.showname}}" />
+								{{else}}
+									{{replaceableImage show.mediaThumbnail}}
+								{{/if}}
+							{{/linkable}}
+							<ul class="subnav">
+								{{#each show.subnav}}
+									{{#cmp @index 5}}
+										</ul>
+										<ul class="subnav">
+									{{/cmp}}
+									<li>
+										<a class="item" href="{{link}}">{{title}}</a>
+									</li>
+								{{/each}}
+							</ul>
+						</div>
+					{{else}}
+						<div class="subHeader">
+							<h3 class="title"><a href="/">{{siteNameFull}}</a></h3>
+							<hr />
+						</div>
+						<ul class="subnav">
+							{{#each nav}}
+								{{#if showsLinks}}
+									<li class="primary shows">
+										<a class="item showsTrigger" href="{{link}}">{{title}}</a>
+
+										<div class="showsListing">
+											<h3 class="title">shows</h3>
+											<hr />
+											<div class="listing">
+												<ul>
+													{{#each showsLinks.shows}}
+														<li><a class="item" href="{{link}}">{{title}}</a></li>
+													{{/each}}
+													<li><a class="item allShows" href="{{link}}">{{showsLinks
+													.allShowsText}} &#62;</a></li>
+												</ul>
+											</div>
+										</div>
+									</li>
+								{{else}}
+									<li class="primary{{cmp title "search" success=" search"}}">
+										<a class="item {{cmp title "search" success="searchTrigger" fail=titleClass}}" href="{{link}}">{{title}}</a>										
+									</li>
+								{{/if}}
+							{{/each}}
+							<li class="navListing">
+								<div class="listing">
+									<ul>
+										{{#if secondaryNav}}
+											{{#each secondaryNav}}
+												<li>
+													<a class="item" href="{{link}}"{{#if target}} target="{{target}}"{{/if}}>{{title}}</a>
+												</li>
+											{{/each}}
+										{{/if}}
+										{{#if tertiaryNav}}
+											{{#each tertiaryNav}}
+												<li>
+													<a class="item" href="{{link}}"{{#if target}} target="{{target}}"{{/if}}>{{title}}</a>
+												</li>
+											{{/each}}
+										{{/if}}
+									</ul>
+								</div>
+							</li>
+						</ul>
+					{{/if}}
+				</div>
+				<div class="panel right">
+					{{#if isShowsNav}}
+						<div class="subHeader">
+							<h3 class="title"><a href="/">{{siteNameFull}}</a></h3>
+							<hr />
+						</div>
+					{{/if}}
+					<ul>
+						{{#if isShowsNav}}
+							{{#each nav}}
+								{{#if showsLinks}}
+									<li class="primary shows">
+										<a class="item showsTrigger" href="{{link}}">{{title}}</a>
+
+										<div class="showsListing">
+											<h3 class="title">shows</h3>
+											<hr />
+											<div class="listing">
+												<ul>
+													{{#each showsLinks.shows}}
+														<li><a class="item" href="{{link}}">{{title}}</a></li>
+													{{/each}}
+													<li><a class="item allShows" href="{{link}}">{{showsLinks.allShowsText}} &#62;</a></li>
+												</ul>
+											</div>
+										</div>
+									</li>
+								{{else}}
+									<li class="primary{{cmp title "search" success=" search"}}">
+										<a class="item {{cmp title "search" success="searchTrigger" fail=titleClass}}" href="{{link}}">{{title}}</a>										
+									</li>
+								{{/if}}
+							{{/each}}
+							{{#if secondaryNav}}
+								{{#each secondaryNav}}
+									<li class="secondary">
+										<a class="item" href="{{link}}"{{#if target}} target="{{target}}"{{/if}}>{{title}}</a>
+									</li>
+								{{/each}}
+							{{/if}}
+						{{/if}}
+					</ul>					
+				</div>
+			</div>
+		</div>
+	</nav>
+{{/with}}

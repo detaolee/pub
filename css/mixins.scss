@@ -1,0 +1,67 @@
+@mixin border-radius($radius) {
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	border-radius: $radius;
+}
+
+@mixin boxShadow($params) {
+	$output: $params;
+	
+	@if type-of($output) == string {
+	$output: #{$params};
+	}
+	-o-box-shadow: $output;
+	-webkit-box-shadow: $output;
+	-moz-box-shadow: $output;
+	box-shadow: $output;
+}
+
+@mixin columnCount($num) {
+	-moz-column-count: $num;
+	-webkit-column-count: $num;
+	column-count: $num;
+}
+
+@mixin transform($params) {
+	$output: $params;
+
+	@if type-of($output) == string {
+		$output: #{$params};
+	}
+	-webkit-transform: $output;
+	-moz-transform: $output;
+	-o-transform: $output;
+	-ms-transform: $output;
+	transform: $output;
+}
+
+@mixin transition($params) {
+	$output: $params;
+	
+	@if type-of($output) == string {
+	$output: #{$params};
+	}
+	-webkit-transition: $output;
+	-moz-transition: $output;
+	-o-transition: $output;
+	-ms-transition: $output;
+	transition: $output;
+}
+
+@mixin media-phablet-plus {
+	@media screen and (min-width: 30em) {
+		@content;
+	}
+}
+
+@mixin media-tablet-plus {
+	@media screen and (min-width: 42em) {
+		@content;
+	}
+}
+
+@mixin media-web-only {
+	@media screen and (min-width: 62.5em) {
+		@content;
+	}
+}

@@ -1,0 +1,629 @@
+.globalNav {
+	position: relative;
+
+	&.show {
+		header li.details {
+			display: inline-block;
+		}
+
+		ul.subnav {
+		  display: inline-block;
+		  vertical-align: top;
+		  width: 48.3%;
+		  margin-right: 2%;
+
+		  &:last-child {
+			margin-right: 0;
+		  }
+		}
+
+		.dropdownMenu .panelContainer .panel.right {
+			.search,
+			.subHeader{
+				hr{
+					display: block;
+				}
+			}			
+		}
+	} // &.show
+
+	&.animateHeight {
+		@include transition('height 0.5s');
+	}
+
+	.logo {
+		position: absolute;
+
+		a {
+			display: block;
+			background-repeat: no-repeat;
+			background-size: contain;
+		}
+	}
+
+	header {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 9999;
+
+		ul {
+			position: relative;
+			max-width: 62.5rem;
+			margin: 0 3%;
+		}
+
+		li {
+			display: inline-block;
+			vertical-align: top;
+
+			&.details {
+				display: none;
+				width: 100%;
+
+				.title,
+				.tuneIn {
+					margin-right: 2rem;
+					@include ellipsis;
+				}
+			} // li.details
+
+			&.links {
+				position: absolute;
+				top: 0.2rem;
+				right: 0;
+
+				ul {
+					margin: 0;
+				}
+
+				li {
+					display: none;
+
+					a.disneyid-login {
+						display: none;
+					}
+
+					&.menu {
+						display: inline-block;
+					}
+				}
+
+				a.dropdownTrigger {
+					display: block;
+					position: relative;
+					width: 2.75rem;
+					height: 2.75rem;
+
+					&:after {
+						position: absolute;
+						top: 1rem;
+						right: 0;
+						width: 1.1875rem;
+						height: 0.1875rem;
+						content: '';
+						border-top-width: 0.5625rem;
+						border-top-style: double;
+						border-bottom-width: 0.1875rem;
+						border-bottom-style: solid;
+					}
+
+					&.selected:after {
+						top: 0.2rem;
+						content: '\78';
+						border: none;
+					}
+
+					span.menu {
+						display: none;
+						vertical-align: top;
+						margin-right: 0;
+						padding-right: 0.5rem;
+					}
+				} // a.dropdownTrigger
+
+				span {
+					cursor: pointer;
+					margin-right: 0.875rem;
+				}
+			} // li.links
+		} // li
+	} // header
+
+	.dropdownMenu {
+		position: absolute;
+		top: -100%;
+		left: 0;
+		width: 100%;
+		height: 0;
+		opacity: 0;
+		overflow: hidden;
+		z-index: 9998;
+		@include boxShadow('0 0 1.875rem 0 rgba(0, 0, 0, 0.5)');
+		@include transition('top 0.3s ease-in-out, opacity 0.3s');
+
+		&.active {
+			height: auto;
+		}
+
+		&.open {
+			top: 100%;
+			opacity: 1;
+		}
+
+		// TODO: hide reg and search since this functionality isn't available yet
+		.mySite{
+			display: none;
+		}
+
+		.panelContainer {
+			max-width: 62.5rem;
+			margin: 1.25rem auto;
+			@include transition('opacity 0.3s');
+
+			&.openShows .panel li.primary.shows .showsListing {
+				// this is used for CSS3 animation only and is
+				// accepted practice for use with height
+				// transition in pure CSS
+				max-height: 93.75rem;
+				opacity: 1;
+			}
+
+			&.openSearch{
+				margin: rem(8) auto 0;
+				min-height: rem(97);
+
+				.panel{
+					margin: 0;
+
+					> *:not(ul),
+					> ul li:not(.search),
+					> ul li.search > .item{
+						display: none;
+					}
+
+					.primary.search .searchBox{
+						overflow: visible;
+						opacity: 1;
+						@include transition('opacity 0.3s');
+					}
+				}
+
+				&.complete{
+					.primary.search .searchBox{
+						max-height: 100%;
+					}
+				}
+			}
+
+			.panel {
+				position: relative;
+				margin: 0 3%;
+
+				&.left {
+
+					img.replaceable {
+						display: none;
+					}
+
+					.title{
+						width: 100%;
+						border-bottom-width: 0.0625rem;
+						border-bottom-style: solid;
+						padding-bottom: 0.5rem;
+					}
+				} // .panel.left
+
+				li.primary {
+					display: block;
+
+					.title,
+					hr {
+						display: none;
+					}
+
+					&.shows .showsListing,
+					&.search .searchBox{
+						max-height: 0;
+						opacity: 0;
+						overflow: hidden;
+					} // li.primary.shows
+
+					&.shows .showsListing{
+						padding-left: 0.625rem;
+						@include transition('max-height 0.3s ease-in-out, opacity 0.3s');
+					}
+
+					&.search .searchBox{
+
+						.searchForm > .title{
+							position: relative;
+							z-index: 2;
+							display: block;
+							float: none;
+							margin-bottom: 0;
+							padding-bottom: 0;
+							border-bottom-width: 0;
+						}
+					}
+				} // li.primary
+
+				hr {
+					clear: both;
+					width: 100%;
+					margin: 0 0 0.625rem 0;
+					border-top: none;
+					border-left: none;
+					border-right: none;
+					border-bottom-width: 0.0625rem;
+					border-bottom-style: solid;
+					display: none;
+				}
+
+				.title {
+					display: inline-block;
+					margin: 0.5rem 0;
+					line-height: 1.2em;
+				}
+
+				.divider {
+					display: inline-block;
+					vertical-align: top;
+					width: 1rem;
+					line-height: 1.5em;
+				}
+
+				.myLinks a,
+				a.allShows {
+					width: auto;
+				}
+
+				.myLinks a {
+					line-height: 1.8em;
+				}
+
+				.socialLinks {
+					margin-bottom: 0.625rem;
+
+					li {
+						display: inline-block;
+						margin-right: 1.25rem;
+
+						&:last-child{
+							margin-right: 0;
+						}
+					}
+				} // .socialLinks
+			} // .panel
+		} // .panelContainer
+
+		a {
+			&.item {
+				display: inline-block;
+				width: 100%;
+				margin-bottom: 1rem;
+			}
+
+			&.icon {
+				display: block;
+				width: 1.9375rem;
+				height: 1.9375rem;
+				margin-bottom: 0;
+				text-indent: 9999rem;
+				overflow: hidden;
+				border-radius: 1.375rem;
+			} // a.icon
+
+			&.showsTrigger {
+				position: relative;
+
+				&:after {
+					position: absolute;
+					top: 0.7rem;
+					margin-left: 0.5rem;
+					width: 0.6rem;
+					height: 0.5rem;
+					content: '';
+					background-size: contain;
+					background-repeat: no-repeat;
+					background-image: url('[CDNROOT]/images/global/36x23_arrow_down.png');
+				}
+
+				&.selected:after {
+					background-image: url('[CDNROOT]/images/global/36x23_arrow_up.png');
+				}
+			} // a.showsTrigger
+		} // a
+	} // .dropdownMenu
+
+	// phablet breakpoint
+	@include media-phablet-plus {
+		header ul,
+		.dropdownMenu .panelContainer .panel {
+			margin: 0 2.5%;
+		}
+	}
+
+	// tablet breakpoint
+	@include media-tablet-plus {
+		&.show .dropdownMenu .panelContainer {
+			&.openShows.complete .panel,
+			&.openSearch.complete .panel {
+				&.left {
+				  display: none;
+				}
+
+				&.right {
+					display: block;
+				}
+			} // .openShows.complete .panel
+
+			&.openShows.complete .panel{
+
+				&.right {
+					width: 96%;
+
+					.search,
+					li.primary:not(.shows),
+					li.secondary,
+					.mySite {
+						display: none;
+					}
+				}
+			}
+
+			&.openSearch.complete .panel{
+
+				&.right {
+					width: 100%;
+
+					li.primary.search{
+						margin-top: rem(20);
+					}
+				}
+			}
+		} // .show .dropdownMenu .panelContainer
+
+		header {
+			li {
+				&.details{
+					vertical-align: middle;
+				}
+
+				&.details {
+					.title,
+					.tuneIn {
+						margin-right: 17.1875rem;
+					}
+				}
+
+				&.links {
+					li {
+						display: inline-block;
+					}
+
+					a.dropdownTrigger {
+						padding-right: 1rem;
+						width: auto;
+						height: auto;
+
+						&:after {
+							top: 0.6rem;
+							right: auto;
+							width: 0.75rem;
+							height: 0.125rem;
+							border-top-width: 0.375rem;
+							border-bottom-width: 0.125rem;
+						}
+
+						&.selected:after {
+							top: -0.0625rem;
+						}
+
+						span.menu {
+							display: inline-block;
+						}
+					} // a.dropdownTrigger
+				} // li.links
+			} // li
+		} // header
+
+		.dropdownMenu .panelContainer {
+			&.openShows {
+				opacity: 0;
+				
+				&.complete {
+					.panel {
+						&.left {
+							width: 96%;
+
+							li.primary:not(.shows) {
+								display: none;
+							}
+						}
+
+						li.primary.shows {
+							opacity: 1;
+
+							.showsListing {
+								max-height: 100%;
+							}
+						} // li.primary.shows
+					} // .panel
+				} // &.complete
+
+				.panel li.primary.shows .showsListing {
+					max-height: 0;
+				}
+
+				&.complete {
+					opacity: 1;
+
+					&.reverse{
+						opacity: 0;
+					}
+
+					.panel {
+//						&.left {
+							margin-right: 0;
+
+							.subHeader,
+							.navListing {
+								display: none;
+							}
+//						}
+
+//						&.right {
+//							display: none;
+//						}
+					} // .panel
+				}
+			} // &.openShows
+
+			.panel {
+				display: inline-block;
+				vertical-align: top;
+
+				&.left {
+					width: 62.5%;
+					margin-right: 4%;
+
+					.navListing ul {
+						// this does not work in IE9 and below, there is
+						// a JS fallback that does this functionality for
+						// those browser versions
+						@include columnCount(2);
+
+						// CSS for non-supported column count browsers
+						&.multiCol {
+							display: inline-block;
+							vertical-align: top;
+							width: 49.5%;
+							margin-right: 1%;
+
+							&:last-child {
+								margin-right: 0;
+							}
+						}
+					} // ul
+
+					.title{
+						width: auto;
+						float: left;
+						border-bottom-width: 0;
+						margin-right: 0.625rem;
+					}
+					
+					hr {
+						display: block;
+					}
+				} // .panel.left
+
+				&.right {
+					position: relative;
+					width: 25.35%;
+				}
+
+				li.primary {
+					display: none;
+
+					.title,
+					hr {
+						display: block;
+					}
+
+					&.shows {
+						display: block;
+						opacity: 0;
+						@include transition('opacity 0.3s');
+					}
+
+					a.showsTrigger {
+						display: none;
+					}
+					
+					&.shows .showsListing {
+						padding-left: 0;
+						opacity: 1;
+						@include transition('opacity 0.3s');
+					}
+
+					&.shows .showsListing {
+						ul {
+							// this does not work in IE9 and below, there is
+							// a JS fallback that does this functionality for
+							// those browser versions
+							@include columnCount(2);
+
+							// CSS for non-supported column count browsers
+							&.multiCol {
+								display: inline-block;
+								vertical-align: top;
+								width: 49.5%;
+								margin-right: 1%;
+
+								&:last-child {
+									margin-right: 0;
+								}
+							}
+						} // ul
+					} //&.shows .showsListing
+
+				} // li.primary
+			} // .panel
+		} // .dropdownMenu .panelContainer
+	}
+
+	// web breakpoint
+	@include media-web-only {
+		&.show {
+			.dropdownMenu .panelContainer {
+				&.openShows.complete .panel.right {
+					width: 100%;
+				}
+		    }
+
+			ul.subnav {
+				width: 27%;
+			}
+		} // .show
+
+		header ul {
+			margin: 0 auto;
+		}
+
+		.dropdownMenu .panelContainer {
+			.panel {
+				margin: 0;
+
+				&.left {
+					width: 68%;
+
+					img.replaceable {
+						display: inline-block;
+						width: 40%;
+						margin-right: 2%;
+					}
+				} // .panel.left
+
+				&.right {
+					width: 27%;
+				}
+
+				li.primary.shows .showsListing ul {
+					// this does not work in IE9 and below, there is
+					// a JS fallback that does this functionality for
+					// those browser versions
+					@include columnCount(3);
+
+					// CSS for non-supported column count browsers
+					&.multiCol {
+						width: 32.6%;
+					}
+				} // .showsListing ul
+			} // .panel
+		} // .dropdownMenu
+	} // media-web-only
+} // .globalNav
